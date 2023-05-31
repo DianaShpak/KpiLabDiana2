@@ -28,7 +28,7 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-access-key-id: AKIAQNGTH2FFHE6Y3NW3
+        aws-access-key-id: ${{ env.AWS_ACCESS_KEY }}
         aws-secret-access-key: 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
         aws-region: us-west-2
     # Checkout the repository to the GitHub Actions runner
