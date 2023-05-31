@@ -1,0 +1,9 @@
+---
+- name: Start container
+  docker_container:
+    name: nginx
+    image: aurora0/kpilab
+    privileged: yes
+    command: ["nginx"]
+    ports:
+      - "80:80"

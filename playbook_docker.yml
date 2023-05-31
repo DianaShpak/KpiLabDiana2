@@ -1,0 +1,10 @@
+---
+- hosts:
+    - all
+  user: ubuntu
+  become: true
+  become_method: sudo
+#  gather_facts: false
+  roles:
+    - docker_install
+    - start_docker
