@@ -17,8 +17,9 @@ jobs:
         shell: bash
     
     permissions:
-      contents: write
       id-token: write
+      contents: read
+      deployments: read
 
     steps:
     - name: Checkout
