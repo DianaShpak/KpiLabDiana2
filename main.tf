@@ -29,8 +29,8 @@ resource "aws_instance" "app_server" {
   user_data = "${file("install_apache.sh")}"
   vpc_security_group_ids = [aws_security_group.web-sg.id]
   tags = {
-    Name = "lab2"
-    test = "diana"
+    Name = "lab2new"
+    test = "dianaKvitochka"
   }
 }
 
