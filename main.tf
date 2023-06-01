@@ -30,6 +30,19 @@ resource "aws_instance" "app_server" {
   }
 }
 
+output "app_servers_ips" {
+  value = {
+    for server in aws_instance.app_server :
+    server.id => server.public_ip
+  }
+}
+
+output "app_servers_status" {
+  value = {
+    for server in aws_instance.app_server :
+    server.id => server.instance_state
+  }
+}
 resource "aws_security_group" "web-sg" {
   name = "test-sg"
   ingress {
