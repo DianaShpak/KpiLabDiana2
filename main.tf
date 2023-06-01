@@ -2,11 +2,8 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.16"
     }
   }
-
-  required_version = ">= 1.2.0"
 }
 
 resource "random_string" "test" {
@@ -44,7 +41,7 @@ output "instance_public_ip" {
 }
 
 resource "aws_security_group" "web-sg" {
-  name = "test-sg" + random_string.test
+  name = random_string.test.result
   ingress {
     from_port   = 80
     to_port     = 80
