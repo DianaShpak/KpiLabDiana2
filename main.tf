@@ -6,14 +6,14 @@ terraform {
   }
 }
 
-resource "random_string" "test" {
+resource "random_string" "random_str" {
   length = 16
   special = false
   lower   = false
 }
 
 resource "aws_key_pair" "terraform_lab" {
-  key_name   = random_string.test.result
+  key_name   = random_string.random_str.result
   public_key = "${file("id_rsa.pub")}"
 }
 
@@ -30,19 +30,12 @@ resource "aws_instance" "app_server" {
   vpc_security_group_ids = [aws_security_group.web-sg.id]
   tags = {
     Name = "lab2"
+    test = "diana"
   }
 }
 
-output "instance_instance_state" {
-  value = aws_instance.app_server.instance_state
-}
-
-output "instance_public_ip" {
-  value = aws_instance.app_server.public_ip
-}
-
 resource "aws_security_group" "web-sg" {
-  name = random_string.test.result
+  name = random_string.random_str.result
   ingress {
     from_port   = 80
     to_port     = 80
@@ -63,4 +56,13 @@ resource "aws_security_group" "web-sg" {
     protocol    = "-1"
     cidr_blocks = ["0.0.0.0/0"]
   }
+}
+
+
+output "instance_instance_state" {
+  value = aws_instance.app_server.instance_state
+}
+
+output "instance_public_ip" {
+  value = aws_instance.app_server.public_ip
 }
