@@ -30,13 +30,6 @@ resource "aws_instance" "app_server" {
   }
 }
 
-output "app_servers_ips" {
-  value = {
-    for server in aws_instance.app_server :
-    server.id => server.public_ip
-  }
-}
-
 output "instance_instance_state" {
   value = aws_instance.app_server.instance_state
 }
