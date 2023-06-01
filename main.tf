@@ -12,7 +12,7 @@ resource "random_string" "test" {
 }
 
 resource "aws_key_pair" "terraform_lab" {
-  key_name   = "id_rsa.pub"
+  key_name   = random_string.test.result
   public_key = "${file("id_rsa.pub")}"
 }
 
